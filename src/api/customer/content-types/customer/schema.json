@@ -4,7 +4,8 @@
   "info": {
     "singularName": "customer",
     "pluralName": "customers",
-    "displayName": "Customers"
+    "displayName": "Customers",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,7 +14,7 @@
   "attributes": {
     "FullName": {
       "type": "string",
-      "required": true,
+      "required": false,
       "maxLength": 300
     },
     "Email": {
@@ -23,7 +24,7 @@
     },
     "Contact_1": {
       "type": "string",
-      "required": true,
+      "required": false,
       "maxLength": 15
     },
     "Contact_2": {
@@ -44,7 +45,7 @@
     },
     "City": {
       "type": "string",
-      "required": true,
+      "required": false,
       "maxLength": 300
     },
     "Area": {
@@ -54,10 +55,11 @@
     "Country": {
       "type": "string",
       "maxLength": 300,
-      "required": true
+      "required": false
     },
     "Valid": {
-      "type": "boolean"
+      "type": "boolean",
+      "default": true
     },
     "orders": {
       "type": "relation",

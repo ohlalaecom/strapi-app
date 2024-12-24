@@ -437,6 +437,7 @@ export interface ApiCustAddressCustAddress extends Schema.CollectionType {
 export interface ApiCustomerCustomer extends Schema.CollectionType {
   collectionName: 'customers';
   info: {
+    description: '';
     displayName: 'Customers';
     pluralName: 'customers';
     singularName: 'customer';
@@ -451,12 +452,10 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
         maxLength: 300;
       }>;
     City: Attribute.String &
-      Attribute.Required &
       Attribute.SetMinMaxLength<{
         maxLength: 300;
       }>;
     Contact_1: Attribute.String &
-      Attribute.Required &
       Attribute.SetMinMaxLength<{
         maxLength: 15;
       }>;
@@ -465,7 +464,6 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
         maxLength: 15;
       }>;
     Country: Attribute.String &
-      Attribute.Required &
       Attribute.SetMinMaxLength<{
         maxLength: 300;
       }>;
@@ -488,7 +486,6 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
         maxLength: 300;
       }>;
     FullName: Attribute.String &
-      Attribute.Required &
       Attribute.SetMinMaxLength<{
         maxLength: 300;
       }>;
@@ -509,7 +506,7 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    Valid: Attribute.Boolean;
+    Valid: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
