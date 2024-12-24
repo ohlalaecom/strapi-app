@@ -395,6 +395,294 @@ export interface ApiBannerBanner extends Schema.CollectionType {
   };
 }
 
+export interface ApiCustAddressCustAddress extends Schema.CollectionType {
+  collectionName: 'cust_addresses';
+  info: {
+    description: '';
+    displayName: 'CustAddresses';
+    pluralName: 'cust-addresses';
+    singularName: 'cust-address';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Address: Attribute.String;
+    Area: Attribute.String;
+    City: Attribute.String;
+    Country: Attribute.String;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::cust-address.cust-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    customer_id: Attribute.Relation<
+      'api::cust-address.cust-address',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::cust-address.cust-address',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCustomerCustomer extends Schema.CollectionType {
+  collectionName: 'customers';
+  info: {
+    displayName: 'Customers';
+    pluralName: 'customers';
+    singularName: 'customer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Address: Attribute.Text;
+    Area: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    City: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    Contact_1: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
+    Contact_2: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 15;
+      }>;
+    Country: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    cust_addresses: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::cust-address.cust-address'
+    >;
+    DOB: Attribute.Date;
+    Email: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    FullName: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 300;
+      }>;
+    Gender: Attribute.String &
+      Attribute.SetMinMaxLength<{
+        maxLength: 10;
+      }>;
+    orders: Attribute.Relation<
+      'api::customer.customer',
+      'oneToMany',
+      'api::order.order'
+    >;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Valid: Attribute.Boolean;
+  };
+}
+
+export interface ApiDeliveryDelivery extends Schema.CollectionType {
+  collectionName: 'deliveries';
+  info: {
+    displayName: 'Deliveries';
+    pluralName: 'deliveries';
+    singularName: 'delivery';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Delivered: Attribute.Boolean & Attribute.Required;
+    Delivery_Date: Attribute.Date & Attribute.Required;
+    Description: Attribute.String;
+    orders: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToMany',
+      'api::order.order'
+    >;
+    publishedAt: Attribute.DateTime;
+    Remarks: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::delivery.delivery',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderDetailOrderDetail extends Schema.CollectionType {
+  collectionName: 'order_details';
+  info: {
+    displayName: 'OrderDetails';
+    pluralName: 'order-details';
+    singularName: 'order-detail';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order-detail.order-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Delivered: Attribute.Boolean;
+    Description: Attribute.Text & Attribute.Required;
+    Grand_Total: Attribute.Decimal;
+    Invoice_No: Attribute.String &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 20;
+      }>;
+    order: Attribute.Relation<
+      'api::order-detail.order-detail',
+      'manyToOne',
+      'api::order.order'
+    >;
+    OrderDate: Attribute.Date & Attribute.Required;
+    Product_ID: Attribute.Integer;
+    publishedAt: Attribute.DateTime;
+    Quantity: Attribute.Integer;
+    Total: Attribute.Decimal & Attribute.Required;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::order-detail.order-detail',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderOrder extends Schema.CollectionType {
+  collectionName: 'orders';
+  info: {
+    description: '';
+    displayName: 'Orders';
+    pluralName: 'orders';
+    singularName: 'order';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    customer: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'api::customer.customer'
+    >;
+    delivery_ids: Attribute.Relation<
+      'api::order.order',
+      'oneToMany',
+      'api::delivery.delivery'
+    >;
+    Description: Attribute.Text;
+    Invoice_No: Attribute.String & Attribute.Required & Attribute.Unique;
+    order_details: Attribute.Relation<
+      'api::order.order',
+      'oneToMany',
+      'api::order-detail.order-detail'
+    >;
+    OrderDate: Attribute.Date & Attribute.Required;
+    publishedAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::order.order',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiPaymentPayment extends Schema.CollectionType {
+  collectionName: 'payments';
+  info: {
+    displayName: 'Payments';
+    pluralName: 'payments';
+    singularName: 'payment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    Currency: Attribute.String;
+    Description: Attribute.Text;
+    order: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'api::order.order'
+    >;
+    PaymentDate: Attribute.Date;
+    publishedAt: Attribute.DateTime;
+    Total_Amount: Attribute.Decimal;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::payment.payment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiPostCategoryPostCategory extends Schema.CollectionType {
   collectionName: 'post_categories';
   info: {
@@ -1294,7 +1582,6 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -1351,6 +1638,12 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::banner.banner': ApiBannerBanner;
+      'api::cust-address.cust-address': ApiCustAddressCustAddress;
+      'api::customer.customer': ApiCustomerCustomer;
+      'api::delivery.delivery': ApiDeliveryDelivery;
+      'api::order-detail.order-detail': ApiOrderDetailOrderDetail;
+      'api::order.order': ApiOrderOrder;
+      'api::payment.payment': ApiPaymentPayment;
       'api::post-category.post-category': ApiPostCategoryPostCategory;
       'api::post.post': ApiPostPost;
       'api::product-brand.product-brand': ApiProductBrandProductBrand;

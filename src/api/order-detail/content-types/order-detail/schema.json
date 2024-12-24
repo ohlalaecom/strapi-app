@@ -1,0 +1,50 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_details",
+  "info": {
+    "singularName": "order-detail",
+    "pluralName": "order-details",
+    "displayName": "OrderDetails"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "OrderDate": {
+      "type": "date",
+      "required": true
+    },
+    "Description": {
+      "type": "text",
+      "required": true
+    },
+    "Invoice_No": {
+      "type": "string",
+      "required": true,
+      "maxLength": 20
+    },
+    "Delivered": {
+      "type": "boolean"
+    },
+    "Product_ID": {
+      "type": "integer"
+    },
+    "Quantity": {
+      "type": "integer"
+    },
+    "Total": {
+      "type": "decimal",
+      "required": true
+    },
+    "Grand_Total": {
+      "type": "decimal"
+    },
+    "order": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::order.order",
+      "inversedBy": "order_details"
+    }
+  }
+}
