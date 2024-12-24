@@ -72,6 +72,11 @@
       "relation": "oneToMany",
       "target": "api::cust-address.cust-address",
       "mappedBy": "customer_id"
+    },
+    "password": {
+      "type": "password",
+      "required": true,
+      "minLength": 6
     }
   }
 }

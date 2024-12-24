@@ -498,6 +498,11 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'oneToMany',
       'api::order.order'
     >;
+    password: Attribute.Password &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        minLength: 6;
+      }>;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
