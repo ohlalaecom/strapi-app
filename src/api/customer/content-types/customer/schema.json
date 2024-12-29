@@ -17,11 +17,6 @@
       "required": false,
       "maxLength": 300
     },
-    "Email": {
-      "type": "string",
-      "required": true,
-      "maxLength": 300
-    },
     "Contact_1": {
       "type": "string",
       "required": false,
@@ -93,6 +88,10 @@
       "type": "relation",
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
+    },
+    "email": {
+      "type": "email",
+      "required": true
     }
   }
 }

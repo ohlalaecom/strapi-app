@@ -484,11 +484,7 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'api::cust-address.cust-address'
     >;
     DOB: Attribute.Date & Attribute.DefaultTo<'1900-01-01'>;
-    Email: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 300;
-      }>;
+    email: Attribute.Email & Attribute.Required;
     FullName: Attribute.String &
       Attribute.SetMinMaxLength<{
         maxLength: 300;
