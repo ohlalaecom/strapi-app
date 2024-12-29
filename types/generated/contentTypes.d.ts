@@ -423,6 +423,7 @@ export interface ApiCustAddressCustAddress extends Schema.CollectionType {
       'manyToOne',
       'api::customer.customer'
     >;
+    Postal_Code: Attribute.String;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
@@ -451,10 +452,13 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       Attribute.SetMinMaxLength<{
         maxLength: 300;
       }>;
+    blocked: Attribute.Boolean;
     City: Attribute.String &
       Attribute.SetMinMaxLength<{
         maxLength: 300;
       }>;
+    confirmationToken: Attribute.String;
+    confirmed: Attribute.Boolean;
     Contact_1: Attribute.String &
       Attribute.SetMinMaxLength<{
         maxLength: 15;
@@ -479,7 +483,7 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'oneToMany',
       'api::cust-address.cust-address'
     >;
-    DOB: Attribute.Date;
+    DOB: Attribute.Date & Attribute.DefaultTo<'1900-01-01'>;
     Email: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
@@ -492,18 +496,22 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
     Gender: Attribute.String &
       Attribute.SetMinMaxLength<{
         maxLength: 10;
-      }>;
+      }> &
+      Attribute.DefaultTo<'NA'>;
     orders: Attribute.Relation<
       'api::customer.customer',
       'oneToMany',
       'api::order.order'
     >;
-    password: Attribute.Password &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        minLength: 6;
-      }>;
+    password: Attribute.Password;
+    prrovider: Attribute.String;
     publishedAt: Attribute.DateTime;
+    resetPasswordToken: Attribute.String;
+    role: Attribute.Relation<
+      'api::customer.customer',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::customer.customer',
@@ -511,7 +519,6 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    Valid: Attribute.Boolean & Attribute.DefaultTo<true>;
   };
 }
 
