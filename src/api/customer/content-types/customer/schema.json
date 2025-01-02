@@ -60,12 +60,6 @@
       "target": "api::order.order",
       "mappedBy": "customer"
     },
-    "cust_addresses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::cust-address.cust-address",
-      "mappedBy": "customer_id"
-    },
     "password": {
       "type": "password"
     },

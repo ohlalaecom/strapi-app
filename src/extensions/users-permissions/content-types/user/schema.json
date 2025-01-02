@@ -64,6 +64,41 @@
       "target": "plugin::users-permissions.role",
       "inversedBy": "users",
       "configurable": false
+    },
+    "Contact_1": {
+      "type": "string"
+    },
+    "Contact_2": {
+      "type": "string"
+    },
+    "Gender": {
+      "type": "string"
+    },
+    "DOB": {
+      "type": "date"
+    },
+    "Address": {
+      "type": "text"
+    },
+    "City": {
+      "type": "string"
+    },
+    "Area": {
+      "type": "string"
+    },
+    "Country": {
+      "type": "string"
+    },
+    "orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order.order"
+    },
+    "cust_addresses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cust-address.cust-address",
+      "mappedBy": "users_permissions_user"
     }
   }
 }

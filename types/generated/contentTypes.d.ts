@@ -418,11 +418,6 @@ export interface ApiCustAddressCustAddress extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    customer_id: Attribute.Relation<
-      'api::cust-address.cust-address',
-      'manyToOne',
-      'api::customer.customer'
-    >;
     Postal_Code: Attribute.String;
     publishedAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -432,6 +427,11 @@ export interface ApiCustAddressCustAddress extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    users_permissions_user: Attribute.Relation<
+      'api::cust-address.cust-address',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 
@@ -478,11 +478,6 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    cust_addresses: Attribute.Relation<
-      'api::customer.customer',
-      'oneToMany',
-      'api::cust-address.cust-address'
-    >;
     DOB: Attribute.Date & Attribute.DefaultTo<'1900-01-01'>;
     email: Attribute.Email & Attribute.Required;
     FullName: Attribute.String &
@@ -1589,9 +1584,15 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
+    Address: Attribute.Text;
+    Area: Attribute.String;
     blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
+    City: Attribute.String;
     confirmationToken: Attribute.String & Attribute.Private;
     confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
+    Contact_1: Attribute.String;
+    Contact_2: Attribute.String;
+    Country: Attribute.String;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'plugin::users-permissions.user',
@@ -1599,11 +1600,23 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    cust_addresses: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::cust-address.cust-address'
+    >;
+    DOB: Attribute.Date;
     email: Attribute.Email &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    Gender: Attribute.String;
+    orders: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'oneToMany',
+      'api::order.order'
+    >;
     password: Attribute.Password &
       Attribute.Private &
       Attribute.SetMinMaxLength<{
