@@ -1584,15 +1584,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
     draftAndPublish: false;
   };
   attributes: {
-    Address: Attribute.Text;
-    Area: Attribute.String;
     blocked: Attribute.Boolean & Attribute.DefaultTo<false>;
-    City: Attribute.String;
     confirmationToken: Attribute.String & Attribute.Private;
     confirmed: Attribute.Boolean & Attribute.DefaultTo<false>;
     Contact_1: Attribute.String;
     Contact_2: Attribute.String;
-    Country: Attribute.String;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'plugin::users-permissions.user',

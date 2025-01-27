@@ -77,18 +77,6 @@
     "DOB": {
       "type": "date"
     },
-    "Address": {
-      "type": "text"
-    },
-    "City": {
-      "type": "string"
-    },
-    "Area": {
-      "type": "string"
-    },
-    "Country": {
-      "type": "string"
-    },
     "orders": {
       "type": "relation",
       "relation": "oneToMany",
