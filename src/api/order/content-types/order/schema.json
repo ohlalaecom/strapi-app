@@ -24,10 +24,10 @@
     "Description": {
       "type": "text"
     },
-    "customer": {
+    "users_permissions_user": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::customer.customer",
+      "target": "plugin::users-permissions.user",
       "inversedBy": "orders"
     },
     "delivery_ids": {

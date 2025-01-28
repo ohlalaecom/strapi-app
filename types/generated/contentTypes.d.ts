@@ -489,11 +489,6 @@ export interface ApiCustomerCustomer extends Schema.CollectionType {
         maxLength: 10;
       }> &
       Attribute.DefaultTo<'NA'>;
-    orders: Attribute.Relation<
-      'api::customer.customer',
-      'oneToMany',
-      'api::order.order'
-    >;
     password: Attribute.Password;
     prrovider: Attribute.String;
     publishedAt: Attribute.DateTime;
@@ -616,11 +611,6 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    customer: Attribute.Relation<
-      'api::order.order',
-      'manyToOne',
-      'api::customer.customer'
-    >;
     delivery_ids: Attribute.Relation<
       'api::order.order',
       'oneToMany',
@@ -642,6 +632,11 @@ export interface ApiOrderOrder extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    users_permissions_user: Attribute.Relation<
+      'api::order.order',
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
   };
 }
 

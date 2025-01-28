@@ -54,12 +54,6 @@
       "maxLength": 300,
       "required": false
     },
-    "orders": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::order.order",
-      "mappedBy": "customer"
-    },
     "password": {
       "type": "password"
     },
