@@ -25,6 +25,7 @@
     "strapi-plugin-ezforms": "^0.1.7",
     "strapi-plugin-slugify": "^2.3.8",
     "styled-components": "^5.2.1",
+    "@remix-run/dev": "^2.0.0",
     "@remix-run/dev": "^2.0.0"
   },
   "author": {
