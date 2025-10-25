@@ -1,16 +1,21 @@
 module.exports = ({ env }) => ({
   // ======================================
-  // 🚀 Email Plugin (Resend Provider)
+  // 📧 Email Plugin (Mailtrap SMTP)
   // ======================================
   email: {
     config: {
-      provider: 'strapi-provider-resend', // 👈 Must match your provider folder name
+      provider: 'nodemailer',
       providerOptions: {
-        apiKey: env('RESEND_API_KEY'), // Defined in .env
+        host: env('MAILTRAP_HOST', 'live.smtp.mailtrap.io'),
+        port: env.int('MAILTRAP_PORT', 587),
+        auth: {
+          user: env('MAILTRAP_USER', 'api'),
+          pass: env('MAILTRAP_PASS'),
+        },
       },
       settings: {
-        defaultFrom: env('EMAIL_FROM'), // contact@jacobs-electronics.com
-        defaultReplyTo: env('EMAIL_FROM'),
+        defaultFrom: env('MAILTRAP_FROM', 'contact@jacobs-electronics.com'),
+        defaultReplyTo: env('MAILTRAP_FROM', 'contact@jacobs-electronics.com'),
       },
     },
   },
