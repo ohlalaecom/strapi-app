@@ -3,7 +3,8 @@
 module.exports = (plugin) => {
   const sendWelcomeEmail = async (user) => {
     try {
-      await strapi.plugins["email"].services.email.send({
+      await strapi.plugin("email").service("email").send
+({
         to: user.email,
         subject: "Welcome to Jacobs Electronics!",
         html: `
